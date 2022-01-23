@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>International Telephone Input</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/css/intlTelInput.css" integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="w-full bg-grey-500">
+        <div class="container mx-auto py-8">
+            <div class="w-96 mx-auto bg-white rounded shadow">
+                <div class="mx-16 py-4 px-8 text-black text-xl font-bold border-b border-grey-500">Contact Form
+                </div>
+                <form name="student_application" id="myForm" action="">
+                    <div class="py-4 px-8">
+                      <div class="mb-4">
+                        <label class="block text-grey-darker text-sm font-bold mb-2">Name:</label>
+                        <input class=" border rounded w-full py-2 px-3 text-grey-darker" type="text"
+                        name="from_name" id="name" required autofocus value="" placeholder="Enter Your ID">
+                      </div>
+                      <div class="mb-4">
+                          <label class="block text-grey-darker text-sm font-bold mb-2">Number:</label>
+                          <input onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" onpaste = "return false";
+   required autofocus class=" border rounded text-2xl w-full py-2 px-3  text-grey-darker" minlength="10" maxlength="10" type="tel"
+                              name="phone" id="phone" value="" placeholder="Enter Your Number" >
+                              <span id="phoneerror"></span>
+                      </div>
+                        <div class="mb-4">
+                            <label class="block text-grey-darker  text-sm font-bold mb-2">Email</label>
+                            <input class=" border rounded w-full py-2 px-3 text-grey-darker" type="email"
+                                name="email" required autofocus id="email" value="" placeholder="Enter Your Name">
+                       </div>
+                        <div class="mb-4">
+                            <label class="block text-grey-darker text-sm font-bold mb-2">Message:</label>
+                            <textarea  class=" border rounded w-full py-2 px-3 text-grey-darker" tabindex="5" type="text"
+                                name="message" required autofocus id="message" value="" placeholder="Enter Your Course Name"></textarea>
+                        </div>
+                          <div class="mb-4">
+                            <input type="submit" value="submit"
+                                class="mb-2 mx-16 rounded-full py-1 px-24 bg-blue-500">
+                        </input>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <!-- Email JS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>    <!-- <form>
+
+      <input id="phone" name="phone" type="tel" />
+      <button type="submit">Submit</button>
+    </form> -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="/build/js/script.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/intlTelInput.js" integrity="sha512-Pw14P2xs3cuVGCeSvKW6P411zKSBtOKxMesJzAhFd5zSGbiyjhXEm/9pcmvLZAme60XZhlpZLtKQ0FbVh2Yn4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/intlTelInput-jquery.js" integrity="sha512-xo8nGg61671g6gPcRbOfQnoL+EP5SofzlUHdZ/ciHev4ZU/yeRFf+TM5dhBnv/fl05vveHNmqr+PFtIbPFQ6jw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    function getIp(callback) {
+ fetch('https://ipinfo.io/json?token=<your token>', { headers: { 'Accept': 'application/json' }})
+   .then((resp) => resp.json())
+   .catch(() => {
+     return {
+       country: 'in',
+     };
+   })
+   .then((resp) => callback(resp.country));
+}
+      var input = document.querySelector("#phone");
+      window.intlTelInput(input, {
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/utils.js",
+        initialCountry: "auto",
+ geoIpLookup: getIp,
+      });
+    </script>
+  </body>
+</html>
